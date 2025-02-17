@@ -29,51 +29,59 @@ get_header();
                 endif;
         ?>
     </div>
+    
 <!-- this is service Page-Container -->
-    <div class="our-service">
+    <div class="Our-service">
             <div class="ourserviceContainer">
                 <div class="service-content-one">
-                <?php
-                $service= array(
-                    'post_type'=> 'page',
-                    'pagename'=>'ourservice',
-                    'posts_per_page' =>1
-                );
-                $new_page_query =new WP_Query($service);
-                if($new_page_query->have_posts()):
-                    while($new_page_query->have_posts()) : $new_page_query->the_post();
-                ?>
-                <div>
-                    <?php the_content(); ?>
-                    <a href="<?php echo get_category_link(get_cat_ID('circle')); ?>" class="button">VIEW ALL</a>
+                    <?php
+                    $category_slug='ourservice';
+                    $category= get_term_by('slug',$category_slug,'category');
+                        if($category){
+                            $category_id=$category->term_id;
+                            $category_name=esc_html($category->name);
+                            $category_description=esc_html($category->description);
 
 
-                </div>
-            
-                <?php 
-                endwhile;
-                    wp_reset_postdata();
-                else:
-                echo '<p> no content found</p>';
-                endif;
+                            $category_image=get_option('z_taxonomy_image'.$category_id);
+
+
+                            
+                            $cat_name=explode('-',$category_name);
+                            ?>
+                            <div class="service-category-content">
+                                <p class="default-header">
+                                    <?php  echo isset($cat_name[0])?$cat_name[0]:'';?><br>
+                                <e> <?php echo  isset($cat_name[1])?$cat_name[1]:'';?></e>
+                                </p>
+                                <p class="service-paragraph"><?php echo $category_description?></p>
+                                <a href="<?php echo esc_url(get_category_link($category_id))?>" class="a-button">VIEW ALL</a>
+
+                            </div>
+                            <div class="service-category-image">
+                                <img src="<?php echo isset($category_image)?$category_image:'';?>" alt="">
+                            </div>
+                            <?php
+                        }
                     ?>
 
                 </div>
                 <!-- sevice -->
                 <div class="service-content-two">
-                    <div class="circle-container">
+                <div class="circle-container">
                     <?php
-                        $circle_args = array(
-                            'category_name' => 'circle',  // Fetch posts from 'circle' category
-                            'posts_per_page' => 4         // Fetch 5 posts
-                        );
+                        $circle_args =[
+                            'category_name' => 'ourservice',  // Fetch posts from 'circle' category
+                            'posts_per_page' => 4 ,
+                            'post__not_in'   => [get_queried_object_id()]        // Fetch 5 posts
+                        ];
                         $circle_query = new WP_Query($circle_args);
                         $circle_classes = ['circle-top', 'circle-left', 'circle-right', 'circle-bottom'];
                         $icons = ['fa-gem', 'fa-layer-group', 'fa-desktop', 'fa-gear',];
                         $i = 0;
-
+                    
                         if ($circle_query->have_posts()) {
-                            while ($circle_query->have_posts() && $i < 5) { // Fetch 5 posts now
+                            while ($circle_query->have_posts() && $i < 4) { // Fetch 5 posts now
                                 $circle_query->the_post(); ?>
                                 
                                 <div class="circle <?php echo esc_attr($circle_classes[$i]); ?>">
@@ -126,6 +134,9 @@ get_header();
                         echo '<p>no content found</p>';
                     endif;
                         ?> 
+                        <div class="feature-btn">
+                        <a href="<?php echo esc_url(get_category_link(get_category_by_slug('slider')->term_id)); ?>" class="view-all">VIEW ALL</a>
+                        </div>
                         <div class="nav-button">
                                 <button id="prev">&#8592;</button>
                                 <button id="next">&#8594;</button>
@@ -262,7 +273,8 @@ get_header();
         <section class="recent-posts">
             <div class="recent-posts-header">
                 <p class="default-header">Recent<br><e>Posts</e></p>
-                <button href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="view-all">VIEW ALL</button>
+                <a href="<?php echo esc_url(get_category_link(get_category_by_slug('recent')->term_id)); ?>" class="view-all">VIEW ALL</a>
+
             </div>
             <div class="recent-posts-container">
                 <?php

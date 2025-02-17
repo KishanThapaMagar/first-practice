@@ -1,0 +1,75 @@
+.archive-container {
+  margin-top: 70px;
+}
+
+.archive-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: blue;
+  font-size: 30px;
+}
+.archive-icon-container h2 i {
+  color: blue;
+  margin: 0 10px;
+}
+.archive-icon-title a {
+  margin: 10px 0 5px;
+  text-decoration: none;
+}
+
+.archive-icon-excerpt {
+  font-size: 14px;
+}
+.archive-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+/* Page Title */
+.archive-page-title {
+  text-align: center;
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #222;
+}
+/* Grid Layout - Two Cards Per Row */
+.archive-service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Ensures exactly 2 cards per row */
+  gap: 40px; /* Space between cards */
+  justify-content: center;
+}
+/* Card Styling */
+.archive-service-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+  padding: 40px; /* Increased padding */
+  width: 100%; /* Make it stretch properly */
+  max-width: 400px; /* Increase max width */
+  min-height: 200px; /* Ensure all cards have a minimum height */
+  display: flex;
+  flex-direction: column;
+}
+.archive-service-card:hover {
+  transform: translateY(-9px);
+}
+/* Card Content */
+.archive-service-content {
+  padding: 15px;
+}
+.archive-service-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+}
+.archive-service-excerpt {
+  font-size: 18px;
+  color: #666;
+}

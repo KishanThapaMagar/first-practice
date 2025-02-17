@@ -28,6 +28,8 @@
     );
 
     $query = new WP_Query($args);
+    $icons = ['fa-gem', 'fa-layer-group', 'fa-desktop', 'fa-gear',]; 
+    $index=0;
 
     if ($query->have_posts()) :
     ?>
@@ -42,8 +44,30 @@
                             <?php endif; ?>
                         </div>
                         <div class="archive-service-content">
+                       
+                             <?php if(has_category('ourservice')){
+                      
+                                    ?>
+                                <div class="archive-icon-container" >
+                                        
+                                        <h2 class="archive-icon-title"><i class="fas <?php echo $icons[$index%count($icons)]?>"></i><a><?php the_title(); ?></a>
+                                    </h2>
+                                 
+                                        <div class="archive-icon-excerpt"><?php the_excerpt();?></div>
+                                    
+                                </div>
+                                        
+                                    <?php
+                                    $index++;
+                            
+                            ?>
+                             <?php
+                             }
+                            else{
+                                ?>
                             <h2 class="archive-service-title"><?php the_title(); ?></h2>
                             <div class="archive-service-text"><?php the_excerpt(); ?></div> <!-- Full content -->
+                            <?php }?>
                         </div>
                     </a>
                 </div>
@@ -63,5 +87,6 @@
 
     <?php wp_reset_postdata(); ?> <!-- Reset post data -->
 </div>
+
 
 <?php get_footer(); ?>

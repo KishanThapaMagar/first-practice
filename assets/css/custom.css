@@ -127,29 +127,37 @@
   min-height: 50vh;
   background-color: #efefef;
   padding: 200px 0px;
+  column-gap: 0px;
 }
-
-.service-content {
-  max-width: 300px;
-  padding: 30px 0px;
+.service-content-one {
+  display: flex;
+  justify-content: center;
 }
-
 .service-paragraph {
-  width: 300px;
+  width: 250px;
   size: 20px;
   font-weight: 400;
   padding: 30px 0px;
 }
-.content-image {
+.a-button {
+  text-decoration: none;
+  background: #2e53fa;
+  color: white;
+  padding: 10px 20px;
+}
+
+.service-category-image img {
+  margin-top: 100px;
   height: 500px;
 }
+
 .service-content-two {
   z-index: 1;
 }
 /* Circle Container - Move Circles Above the Image */
 .circle-container {
   position: absolute;
-  top: 25%;
+  top: 30%;
   right: 50%; /* Adjusted to prevent cramping */
   transform: translateY(-50%);
   width: 350px; /* Increased container size */
@@ -159,8 +167,8 @@
 }
 /* Common Circle Styles */
 .circle {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background-color: #fefefe;
   color: rgb(0, 0, 0);
   border-radius: 50%;
@@ -190,23 +198,23 @@
   font-weight: normal;
 }
 .circle-top {
-  top: -10px; /* Moves it higher */
-  left: 60%;
+  top: -15px; /* Moves it higher */
+  left: 50%;
   transform: translateX(-50%);
 }
 .circle-bottom {
-  bottom: -250px; /* Moves it lower */
-  left: 70%;
+  bottom: -355px; /* Moves it lower */
+  left: 50%;
   transform: translateX(-50%);
 }
 .circle-left {
-  left: -120px; /* Moves it left */
-  top: 90%;
+  left: -200px; /* Moves it left */
+  top: 110%;
   transform: translateY(-50%);
 }
 .circle-right {
   right: -200px; /* Moves it right */
-  top: 80%;
+  top: 110%;
   transform: translateY(-50%);
 }
 /* feature project */
@@ -440,7 +448,6 @@
 }
 
 .view-all {
-  height: 50px;
   background: #2e53fa;
   color: #f5f5f5;
   text-decoration: none;
@@ -628,6 +635,7 @@
 
 /* footer css begin */
 footer {
+  bottom: 0;
   height: auto;
   background-color: red;
   width: 100%;
@@ -1069,6 +1077,9 @@ about-content-head
   gap: 10px;
   margin-top: 10px;
 }
+.feature-btn {
+  margin: 20px;
+}
 
 .nav-btn {
   background: none;
@@ -1096,9 +1107,298 @@ about-content-head
   font-size: 75px;
   font-weight: 1000;
 }
-.service-container {
-  margin-top: 100px;
+/* services started */
+/* Service Container */
+/* Service Container */
+/* Service Header */
+.service-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
 }
-.blog-container {
-  margin-top: 100px;
+.service-header {
+  width: 70%;
+  text-align: left;
+  font-size: 50px;
+  padding: 30px 30px;
+}
+
+.service-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Service Content Layout */
+.service-page-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  padding: 30px 0px;
+}
+
+/* Individual Service Box */
+.the-content {
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+}
+
+/* Alternating Layout */
+.the-content:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+/* Hover Effect */
+.the-content:hover {
+  transform: translateY(-5px);
+}
+
+/* Text Content */
+.content-one {
+  width: 40%;
+  padding: 20px;
+}
+
+.content-one h1 {
+  font-size: 34px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.content-one p {
+  font-size: 20px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* View More Button */
+.view-more {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.view-more:hover {
+  background: #0056b3;
+}
+
+/* Image Styling */
+.content-two {
+  width: 40%;
+}
+
+.content-two img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .service-container {
+    width: 90%;
+  }
+  .the-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  .the-content:nth-child(even) {
+    flex-direction: column;
+  }
+  .content-one,
+  .content-two {
+    width: 100%;
+  }
+}
+
+/* services ended  */
+
+/* blog started */
+.blog {
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.blog-header h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: left;
+  padding: 100px 0px;
+}
+
+.blog-content-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+  gap: 20px;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-image img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-text {
+  padding: 20px;
+}
+
+.blog-text h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.blog-text p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.read-more {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.read-more:hover {
+  background: #0056b3;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination a,
+.pagination span {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.pagination .current {
+  background: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+.pagination a:hover {
+  background: #0056b3;
+  color: white;
+}
+/* blog ended  */
+
+/* contact page css started  */
+.contact-container {
+  display: flex;
+  justify-content: center;
+}
+
+.contact-head {
+  padding: 100px 10px;
+  font-size: 70px;
+  font-weight: 1000;
+}
+.contact-content {
+  padding: 50px 0px;
+}
+.contact-content-wp {
+  column-gap: 10%;
+}
+.contact-page-content-wp {
+  width: 50%;
+}
+.content-contact-wp {
+  width: 40%;
+  background-color: #000;
+  color: white;
+  height: 400px;
+}
+.default-header-wp {
+  font-size: 63px;
+  font-weight: 1000;
+  margin: 10px 0 0 50px;
+}
+.contact-info-p-wp {
+  margin: 10px 0 0 50px;
+}
+.common-list {
+  margin: 15px 0 0 50px;
+}
+
+/* css for the get latest news */
+
+.get-latest-news {
+  display: flex;
+  justify-content: center;
+  column-gap: 10%;
+}
+.get-latest-title {
+  font-size: 50px;
+  font-weight: 1000;
+  width: 30%;
+}
+.get-latest-content {
+  font-size: 20px;
+  width: 30%;
+}
+.get-latest-p-wp {
+  display: flex;
+  justify-content: center;
+}
+.get-email {
+  padding: 100px 0px;
+  height: 50px;
+  width: 100%;
+}
+.get-email input {
+  width: 60%;
+  border: none;
+  border-bottom: 1px solid black;
+  background: transparent;
+  padding: 10px 5px;
+  font-size: 16px;
+  outline: none;
+}
+.get-email-btn {
+  background-color: #2e53fa;
+  border: none;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  padding: 10px 10px;
+  width: 30%;
 }

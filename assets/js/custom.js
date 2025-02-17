@@ -135,3 +135,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize with the first director as default
   updateMainContent(0);
 });
+function goBack() {
+  window.history.back();
+}
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var backButton = document.querySelector(".archive-back-button");
+
+        if (document.referrer) {
+            backButton.setAttribute("href", document.referrer);
+        }
+    });

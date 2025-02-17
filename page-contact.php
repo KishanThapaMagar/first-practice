@@ -1,15 +1,12 @@
 <?php
 get_header();?>
 
-<div>
-    <div>
-        <div>
-         
-        </div>
-        <div style="margin-top:100px;">
+<div class="contact-container">
+    <div class="contact-content-wrap">
+        <div class="contact-head">
             <?php the_title();?>
         </div>
-        <div>
+        <div class="contact-content">
             <?php the_content();?>
         </div>
 
