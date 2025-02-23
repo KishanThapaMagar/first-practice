@@ -49,6 +49,7 @@ template name:Aboutus;
         wp_reset_postdata(); // Reset post data
     endif;
     ?>
+    <div id="quality-container">
     <div class="quality-container">
         <div class="quality-service-container">
                 <?php
@@ -90,6 +91,8 @@ template name:Aboutus;
 
         </div>
     </div>
+    </div>
+    
     
     
 

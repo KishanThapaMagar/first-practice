@@ -1,10 +1,13 @@
-    <?php 
+    <?php
+   
+     
     add_action('wp_enqueue_scripts','kalkiautomation_enqueue_assets');
     function kalkiautomation_enqueue_assets()
     {
         wp_enqueue_style('kalki-custom',get_template_directory_uri().'/assets/css/custom.css');
         wp_enqueue_style('kalki-archive',get_template_directory_uri().'/assets/css/archive.css');
         wp_enqueue_style('kalki-single',get_template_directory_uri().'/assets/css/single.css');
+        wp_enqueue_style('booking',get_template_directory_uri().'/assets/css/booking.css');
         wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), null);
         wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
         wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
@@ -72,4 +75,5 @@ function zGetAttachmentIdByUrl($image_src) {
     $id = $wpdb->get_var($query);
     return (!empty($id)) ? $id : null;
 }
-?>
+
+

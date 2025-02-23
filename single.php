@@ -84,6 +84,21 @@ if(have_posts()):while(have_posts()):the_post();?>
         <?php
               // End the if statement for blog_query
     }
+    elseif(
+        has_category('recent')
+    ){
+    ?>
+    <div>
+        <div style="margin:100px;">
+            <h1><?php the_title();?></h1>
+            <img src="<?php the_post_thumbnail_url('large');?>">
+            <?php the_excerpt();?>
+        <a href="<?php echo esc_url(get_category_link(get_cat_ID('recent')));?>" class="view-more">back to recent</a>
+
+        </div>
+    </div>
+    <?php
+    }
     elseif(has_category('slider')){
     ?>
     <div>
@@ -111,6 +126,20 @@ if(have_posts()):while(have_posts()):the_post();?>
         <?php
 
     }
+    elseif(has_category('we-provide-high-quality-services')){
+        ?>
+        <div>
+            <div style="margin:100px; max-width:300px;">
+                <h1><?php the_title();?></h1>
+                <p><?php the_excerpt();?></p>   
+                <a href="<?php echo esc_url(get_permalink(get_page_by_path("about"))).'#quality-container';?>" class="back-to-the">← Back</a>
+     
+            </div>
+        </div>
+        <?php
+    }?>
+    
+    <?php
  
 endwhile;
     endif;

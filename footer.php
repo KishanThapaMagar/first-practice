@@ -7,10 +7,10 @@
         <div class="footer-about">
         <h4>About</h4>
             <ul>
-                <li>About Us</li>
+                <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('about')))?>" style="text-decoration:none;color:white;">About Us</a></li>
                 <li>How It Works</li>
                 <li>What We Do</li>
-                <li>Contact Us</li>
+                <li><a href="<?php echo esc_url(get_permalink(get_page_by_path('contact')))?>" style="text-decoration:none;color:white;">Contact Us</a></li>
                 <li>Careers</li>
                 <li>FAQs</li>
             </ul>
