@@ -18,7 +18,7 @@
 
     }
     function register_my_menus() {
-        register_nav_menus([
+        register_nav_menus([ 
             'menu1' => __('Main-Menu'),
         ]);
         add_theme_support('post-thumbnails');
