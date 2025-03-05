@@ -21,7 +21,7 @@
 
        
     <?php endif ?>
-       
+  
         <div class="NavBar">
             <div class="NavBar-head">
                 <!-- <img src="<?php echo get_template_directory_uri()?>/assets/images/logohead.png" alt=""> -->
@@ -33,6 +33,7 @@
                 ]);
                 ?>
             </div>   
-       
         </div>
+        <div style="margin-top:100px;"></div>
+        
     

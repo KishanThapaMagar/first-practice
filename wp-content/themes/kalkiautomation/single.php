@@ -39,6 +39,17 @@ if(have_posts()):while(have_posts()):the_post();?>
 
     elseif (has_category('blog')) {
 ?>
+    <div class="blog-single-header-section-wrap">
+         <div  class="blog-single-header-section">
+            <div class="blog-single-header">
+                 <h1><?php the_title();?></h1>
+            </div>
+            <div class="blog-single-img">
+                <img src="<?php the_post_thumbnail_url('large');?>" alt="">
+            </div>
+        </div>
+    </div>
+       
         <div class="blog-container">
             <div>
                 <p class="blog-container-paragraph"><?php the_content(); ?></p>
@@ -137,10 +148,12 @@ if(have_posts()):while(have_posts()):the_post();?>
             </div>
         </div>
         <?php
-    }?>
+    }
+    elseif(has_category('project'))
+    ?>
     
     <?php
- 
+    
 endwhile;
     endif;
 ?>

@@ -62,9 +62,9 @@
   width: 100%;
   /* Ensure it stays on top */
   box-sizing: border-box;
-  margin-top: -101px;
   overflow: hidden;
   z-index: 999;
+  margin-top:-10px;
 }
 .NavBar-head {
   width: 400px;
@@ -288,8 +288,13 @@
   flex-direction: column;
   justify-content: center;
 }
-.testimonmial-head {
-  margin-left: 60px;
+.testimonial-head {
+  display:flex;
+  justify-content: center;
+}
+.testimonial-head p{
+  text-align: left;
+  width:80%;
 }
 .testimonials {
   display: flex;
@@ -870,17 +875,13 @@ about-content
 about-content-group
 about-content-head
 */
-.about-page {
-  margin-top: 69px;
-}
-
 .about-header {
   display: flex;
   justify-content: center; /* Centers the div */
   align-items: center;
   text-align: left; /* Aligns text to the left */
   font-size: 50px;
-  padding: 40px 0px;
+  padding-top:40px;
   width: 100%;
 }
 
@@ -897,13 +898,12 @@ about-content-head
   display: flex;
   column-gap: 100px;
   text-align: left;
-  padding: 100px 0px;
+  padding: 20px 0px;
 }
 .about-content-row-first {
   font-size: 25px;
 }
 .about-content-row-second {
-  width: 500px;
   font-size: 30px;
 }
 .about-content-head {
@@ -912,9 +912,6 @@ about-content-head
 }
 /* all-service */
 .all-service {
-  width: 100%;
-  height: 550px;
-  display: flex;
   background-color: black;
 }
 .all-service-content {
@@ -930,6 +927,7 @@ about-content-head
   color: #2e53fa;
 }
 .all-service-list {
+  padding:20px 50px;
   color: #848484;
 }
 .all-service-btn {
@@ -1078,7 +1076,7 @@ about-content-head
   margin-top: 10px;
 }
 .feature-btn {
-  margin: 20px;
+  margin:20px 0px;
 }
 
 .nav-btn {
@@ -1226,14 +1224,13 @@ about-content-head
   width: 80%;
   max-width: 1000px;
   margin: auto;
-  padding: 40px 0;
 }
 
 .blog-header h1 {
   font-size: 4rem;
   font-weight: bold;
   text-align: left;
-  padding: 100px 0px;
+  padding: 50px 0px;
 }
 
 .blog-content-wrap {
@@ -1328,7 +1325,7 @@ about-content-head
 }
 
 .contact-head {
-  padding: 100px 10px;
+  padding:0px 10px;
   font-size: 70px;
   font-weight: 1000;
 }
@@ -1357,6 +1354,10 @@ about-content-head
 }
 .common-list {
   margin: 15px 0 0 50px;
+}
+.sendmail-contact{
+  display:flex;
+  justify-content: c;
 }
 
 /* css for the get latest news */

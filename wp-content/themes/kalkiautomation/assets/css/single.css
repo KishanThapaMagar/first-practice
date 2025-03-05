@@ -45,6 +45,25 @@
   background: #005d82;
 }
 
+/* blog single css */
+.blog-single-header-section-wrap{
+  margin-top:100px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  }
+.blog-single-header-section h1{
+  padding:50px;
+  font-size:50px;  
+}
+.blog-single-img img{
+  border-radius: 50%;
+  height:200px;
+  width:200px;
+}
+.blog-single-header{
+
+}
 .blog-container {
   color: black;
   margin-top: 100px;

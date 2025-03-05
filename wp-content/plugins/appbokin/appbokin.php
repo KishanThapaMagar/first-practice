@@ -54,7 +54,6 @@
             }
             return self::$instance;
         }
-    
         public function show_add_appointment_form() {
             echo "<div class='wrap'><h1>Add New Appointment</h1>";
         
@@ -158,7 +157,6 @@
             echo "<h2>Appointments</h2>";
         
             // Add Appointment Button
-            echo "<a href='?page=booking_system&add_appointment=true' class='button button-primary' style='margin-bottom: 15px;'>Add Appointment</a>";
             if (isset($_GET['add_appointment'])) {
                 $this->show_add_appointment_form();
             }
@@ -454,8 +452,35 @@
 
             wp_mail($admin_email, $subject, $message);
         }
+        public function create_appointments_table() {
+            global $wpdb;
+            $table_name = $wpdb->prefix . 'appointments';
+            $charset_collate = $wpdb->get_charset_collate();
+    
+            $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+                id INT NOT NULL AUTO_INCREMENT,
+                name VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL,
+                phone VARCHAR(20) NOT NULL,
+                date DATE NOT NULL,
+                time TIME NOT NULL,
+                service VARCHAR(255) NOT NULL,
+                status VARCHAR(50) NOT NULL DEFAULT 'Pending',
+                PRIMARY KEY (id)
+            ) $charset_collate;";
+    
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+            dbDelta($sql);
+        }
+    
+        public static function activate() {
+            $instance = self::get_instance();
+            $instance->create_appointments_table();
+        }
     
     }
 
     
-    AppBokin::get_instance(); 
+    AppBokin::get_instance();
+    // Hook the activation to create the table
+register_activation_hook(__FILE__, ['AppBokin', 'activate']); 

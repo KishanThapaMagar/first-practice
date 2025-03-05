@@ -177,7 +177,7 @@ get_header();
 
 <!-- client's testimonials -->
     <div class="testimonials-container">
-        <div class="testimonmial-head">
+        <div class="testimonial-head">
         <p class="default-header">Clint's<br><e>Testimonials</e></p>
 
         </div>
@@ -232,42 +232,59 @@ get_header();
     </div>
     
 
-    <div class="counter-container">
-                    <div class="counter-one">
-                        <div class="counter">
-                            <div class="counter-content">
-                                <div class="timer" data-to="400" data-speed="500"></div>
-                                <span>+</span>
-                            </div>
-                           
-                        </div>
-                        <p>Project Completed</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="counter-two">
-                        <div class="counter">
-                            <div class="counter-content">
-                                <div class="timer" data-to="150" data-speed="500"></div>
-                                <span>m</span>
-                            </div>
+                <div class="counter-container">
+                    <?php
+                        $counter_query= new WP_Query(array(
+                            'post_type'=>'counter',
+                            'posts_per_page'=>1
+                        ));
+                        if($counter_query->have_posts()){
+                            while($counter_query->have_posts()){
+                                $counter_query->the_post();
+                                $projects_completed=get_post_meta(get_the_ID(),'projects_completed',true); 
+                                $hours_coding=get_post_meta(get_the_ID(),'hours_coding',true); 
+                                $happy_clients=get_post_meta(get_the_ID(),'happy_clients',true); 
+                                ?>
+                                <div class="counter-one">
+                                    <div class="counter">
+                                        <div class="counter-content">
+                                            <div class="timer" data-to="<?php echo esc_html($projects_completed);?>" data-speed="500"></div>
+                                            <span>+</span>
+                                        </div>
+                                    
+                                    </div>
+                                    <p>Project Completed</p>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="counter-two">
+                                    <div class="counter">
+                                        <div class="counter-content">
+                                            <div class="timer" data-to="<?php echo esc_html($hours_coding);?>" data-speed="500"></div>
+                                            <span>m</span>
+                                        </div>
+                                        
+                                    </div>
+                                    <p>Hours Coding</p>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="counter-three">
+                                    <div class="counter">
+                                        <div class="counter-content">
+                                            <div class="timer" data-to="<?php echo esc_html($happy_clients);?>" data-speed="500"></div>
+                                            <span>+</span>
+                                        </div>
+                                    
+                                    </div>
+                                    <p>Happy Clients</p>
+                                </div>
+                                <?php
+                            }
+                        }
+                    ?>
                             
-                        </div>
-                        <p>Hours Coding</p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="counter-three">
-                        <div class="counter">
-                            <div class="counter-content">
-                                <div class="timer" data-to="700" data-speed="500"></div>
-                                <span>+</span>
-                            </div>
-                           
-                        </div>
-                        <p>Happy Clients</p>
-                    </div>
+                                
                     
-        
-    </div>
+                </div>
 
     <div class="recent-post-wrap">
         <section class="recent-posts">
@@ -375,4 +392,3 @@ get_header();
 <?php
 get_footer(); 
 ?>
-       

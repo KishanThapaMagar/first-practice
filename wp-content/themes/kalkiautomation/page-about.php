@@ -12,6 +12,7 @@ template name:Aboutus;
         <div class="about-header">
              <h1><?php  echo get_the_title();?></h1>
         </div>
+        
         <?php the_content(); ?>
     </div>
         
