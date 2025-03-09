@@ -22,7 +22,7 @@
        
     <?php endif ?>
   
-        <div class="NavBar">
+        <div id="NavBar" class="NavBar">
             <div class="NavBar-head">
                 <!-- <img src="<?php echo get_template_directory_uri()?>/assets/images/logohead.png" alt=""> -->
             </div>
@@ -34,6 +34,20 @@
                 ?>
             </div>   
         </div>
+     
         <div style="margin-top:100px;"></div>
         
-    
+
+        
+       <script>
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("NavBar").style.top = "0";
+            } else {
+                document.getElementById("NavBar").style.top = "-75px";
+            }
+            prevScrollpos = currentScrollPos;
+            }
+        </script>

@@ -16,7 +16,145 @@
         wp_enqueue_script('custom-carousel-js', get_template_directory_uri() . '/assets/js/custom.js', array('swiper-js', 'jquery'), null, true);
         wp_enqueue_script('counter-script', get_template_directory_uri() .'/assets/js/counter.js',array('jquery'),'1.0.0', true);
 
+
+    } 
+        
+    // Start session if not already started
+    function start_session_if_not_started() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
+    add_action('init', 'start_session_if_not_started');
+
+    // Save the redirect URL before login
+    function save_redirect_url_before_login() {
+        if (!is_user_logged_in()) {
+            // Save the current URL to the session
+            $_SESSION['redirect_to_after_login'] = $_SERVER['REQUEST_URI'];
+        }
+    }
+    add_action('template_redirect', 'save_redirect_url_before_login');
+
+    // Custom redirect after login
+    function custom_redirect_after_login($redirect, $user) {
+        // Check if the user is an administrator
+        if (in_array('administrator', (array) $user->roles)) {
+            return admin_url(); // Redirect admin users to the dashboard
+        }
+        // Check if there’s a redirect URL saved in the session
+        if (!empty($_SESSION['redirect_to_after_login'])) {
+            $redirect = $_SESSION['redirect_to_after_login'];
+            unset($_SESSION['redirect_to_after_login']); // Clear session variable after use
+        } else {
+            // Default to the account dashboard if no redirect URL is saved
+            $redirect = wc_get_account_endpoint_url('dashboard');
+        }
+        return $redirect;
+    }
+    add_filter('woocommerce_login_redirect', 'custom_redirect_after_login', 10, 2);
+
+    
+    
+     
+    function custom_woocommerce_register_user() {
+        if (isset($_POST['register']) && isset($_POST['woocommerce-register-nonce']) && wp_verify_nonce($_POST['woocommerce-register-nonce'], 'woocommerce-register')) {
+            $username = sanitize_text_field($_POST['username']);
+            $email = sanitize_email($_POST['email']);
+            $password = $_POST['password'];
+    
+            if (empty($username) || empty($email) || empty($password)) {
+                wc_add_notice(__('All fields are required.', 'woocommerce'), 'error');
+                return;
+            }
+    
+            // Check if username exists
+            if (username_exists($username)) {
+                wc_add_notice(__('Username already exists. Please choose a different one.', 'woocommerce'), 'error');
+                return;
+            }
+    
+            // Check if email exists
+            if (email_exists($email)) {
+                wc_add_notice(__('Email is already registered. Try logging in instead.', 'woocommerce'), 'error');
+    
+                // Send notification email to the registered email
+                $user = get_user_by('email', $email);
+                $login_url = wc_get_page_permalink('myaccount');
+    
+                $subject = __('Account Already Exists', 'woocommerce');
+                $message = "Hello, \n\nIt looks like you already have an account with us using this email. If you forgot your password, you can reset it here: " . wp_lostpassword_url() . "\n\nOr login here: " . $login_url;
+    
+                wp_mail($email, $subject, $message);
+                
+                return;
+            }
+    
+            // Create user
+            $user_id = wp_create_user($username, $password, $email);
+            
+            if (is_wp_error($user_id)) {
+                wc_add_notice($user_id->get_error_message(), 'error');
+                return;
+            }
+    
+            // Set user role as WooCommerce customer
+            wp_update_user(['ID' => $user_id, 'role' => 'customer']);
+    
+            // Log in the user
+            wc_set_customer_auth_cookie($user_id);
+    
+            // Redirect after successful registration
+            wp_safe_redirect(wc_get_page_permalink('myaccount'));
+            exit;
+        }
+    }
+    add_action('template_redirect', 'custom_woocommerce_register_user');
+    function custom_woocommerce_registration_errors($errors, $username, $email) {
+        if (username_exists($username)) {
+            $errors->add('username_unavailable', __('This username is already taken. Please choose another one.', 'woocommerce'));
+        }
+    
+        if (email_exists($email)) {
+            $errors->add('email_unavailable', __('This email address is already registered. Please use a different one or log in.', 'woocommerce'));
+        }
+    
+        return $errors;
+    }
+    add_filter('woocommerce_registration_errors', 'custom_woocommerce_registration_errors', 10, 3);
+    
+
+    function restrict_add_to_cart() {
+        if (!is_user_logged_in()) {
+            // Set a WooCommerce error notice
+            wc_add_notice('You need to be logged in to add products to your cart.', 'error');
+    
+            // Enqueue custom script to show alert and redirect
+            add_action('wp_footer', 'custom_login_alert_script');
+        }
+    }
+    add_action('woocommerce_add_to_cart', 'restrict_add_to_cart', 1);
+    
+    function custom_login_alert_script() {
+        ?>
+        <script type="text/javascript">
+            alert('You need to log in to add products to your cart.');
+            window.location.href = '<?php echo wc_get_page_permalink( 'myaccount' ); ?>';
+        </script>
+        <?php
+    }
+    function disable_woocommerce_password_strength( $strength ) {
+        return 0; // Set to 0 to disable strength requirements
+    }
+    add_filter( 'woocommerce_min_password_strength', 'disable_woocommerce_password_strength' );
+    
+    function remove_woocommerce_password_hint( $hint ) {
+        return '';
+    }
+    add_filter( 'woocommerce_get_password_hint', 'remove_woocommerce_password_hint' );
+        
+    
+    
     function register_my_menus() {
         register_nav_menus([ 
             'menu1' => __('Main-Menu'),
@@ -24,7 +162,11 @@
         add_theme_support('post-thumbnails');
     }
     add_action('after_setup_theme', 'register_my_menus');
-
+    function custom_return_to_shop_redirect() {
+        return home_url('/projects'); // Change '/projects' to your actual Projects page URL
+    }
+    add_filter('woocommerce_return_to_shop_redirect', 'custom_return_to_shop_redirect');
+    
     function enable_ajax_add_to_cart() {
         add_theme_support('wc-product-gallery-zoom');
         add_theme_support('wc-product-gallery-lightbox');

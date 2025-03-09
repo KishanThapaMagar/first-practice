@@ -83,12 +83,12 @@ get_header();
                 }
                 ?>
                 <div class="project-container">
-                    <div class="project-content">
-                        <?php if (has_post_thumbnail()): ?>
+                <?php if (has_post_thumbnail()): ?>
                             <img src="<?php echo esc_url(get_the_post_thumbnail_url(get_the_ID(), 'large')); ?>" alt="">
                         <?php else: ?>
                             <img src="<?php echo esc_url(wc_placeholder_img_src()); ?>" alt="">
                         <?php endif; ?>
+                    <div class="project-content">
                         <div class="project-content-details">
                             <h1><?php the_title(); ?></h1>
                             <p>

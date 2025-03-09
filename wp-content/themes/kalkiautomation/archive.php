@@ -11,7 +11,6 @@
             echo '<span style="color: black;">' . esc_html(ucfirst($title_parts[0])) . '</span> ';
             echo '<span style="color: #007BFF;">' . esc_html(ucfirst($title_parts[1])) . '</span>';
         } else {
-            echo esc_html(ucfirst($title)); // Fallback if there's no space in the title
         }
         ?>
     </h1>

@@ -8,4 +8,4 @@
     <?php echo do_shortcode('[woocommerce_checkout]');?>
 </div>
 
-<?php get_footer();?>
+<?php get_footer();?>   
