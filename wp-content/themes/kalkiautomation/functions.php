@@ -37,22 +37,22 @@
     add_action('template_redirect', 'save_redirect_url_before_login');
 
     // Custom redirect after login
-    function custom_redirect_after_login($redirect, $user) {
-        // Check if the user is an administrator
-        if (in_array('administrator', (array) $user->roles)) {
-            return admin_url(); // Redirect admin users to the dashboard
-        }
-        // Check if there’s a redirect URL saved in the session
-        if (!empty($_SESSION['redirect_to_after_login'])) {
-            $redirect = $_SESSION['redirect_to_after_login'];
-            unset($_SESSION['redirect_to_after_login']); // Clear session variable after use
-        } else {
-            // Default to the account dashboard if no redirect URL is saved
-            $redirect = wc_get_account_endpoint_url('dashboard');
-        }
-        return $redirect;
-    }
-    add_filter('woocommerce_login_redirect', 'custom_redirect_after_login', 10, 2);
+    // function custom_redirect_after_login($redirect, $user) {
+    //     // Check if the user is an administrator
+    //     if (in_array('administrator', (array) $user->roles)) {
+    //         return admin_url(); // Redirect admin users to the dashboard
+    //     }
+    //     // Check if there’s a redirect URL saved in the session
+    //     if (!empty($_SESSION['redirect_to_after_login'])) {
+    //         $redirect = $_SESSION['redirect_to_after_login'];
+    //         unset($_SESSION['redirect_to_after_login']); // Clear session variable after use
+    //     } else {
+    //         // Default to the account dashboard if no redirect URL is saved
+    //         $redirect = wc_get_account_endpoint_url('dashboard');
+    //     }
+    //     return $redirect;
+    // }
+    // add_filter('woocommerce_login_redirect', 'custom_redirect_after_login', 10, 2);
 
     
     

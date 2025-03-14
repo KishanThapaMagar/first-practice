@@ -1,0 +1,102 @@
+.banner{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    padding:20px 0;
+}
+.banner img{
+    width:80%;
+}
+.discovery-wrap{
+    display: flex;
+    justify-content: center;width:100%
+}
+.discovery-container{
+    display: flex;
+    justify-content: space-between;
+    width:80%
+}
+.discovery{
+    display: flex;
+    justify-content: center;
+    gap:30px;
+}
+.discovery a{
+    text-decoration: none;
+    color:black;
+}
+
+.project-container{
+    height:auto;
+    width:130px;
+    border: 1px solid black;
+}
+.project-container img{
+    height:auto;
+    width:130px;
+}
+.project-content-details{
+    display: flex;
+    justify-content: center;
+}
+.project-content-details h1{
+    font-size: 13px;
+    padding:10px 0px;
+    border-bottom: 1px solid rgb(243, 118, 212);
+}
+.bestseller-header{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+.bestseller-header-content{
+    display: flex;
+    flex-direction: row-reverse;
+    width:80%;
+    padding:50px 0px;
+
+}
+.bestseller-wrap{
+    display: flex;
+    justify-content: center;
+    width:100%;
+}
+
+.bestseller {
+    position: relative;
+    width: 80%;
+    overflow: hidden;
+}
+.bestseller a{
+    text-decoration:none;
+    color:black;
+}
+.bestseller-container {
+    text-align: center;
+    width: 230px;  
+}
+.bestseller-container img {
+    width: 230px;   
+    background-color: #f5f5f5;
+}
+.bestseller-content h2 {
+    padding:20px 0px;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+.swiper-pagination{
+    transform: translateY(-50%);
+}
+.shop-btn{
+    display:flex;
+    justify-content: center;
+    padding:30px 0px
+}
+.shop-btn a{
+    background-color: black;
+    text-decoration:none;
+    color:white;
+    width:150px;
+    text-align: center;
+    padding:10px 25px;
+}
